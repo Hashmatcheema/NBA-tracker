@@ -51,6 +51,12 @@ jobs:
         run: |
           scripts/j2k.bat build
 
+      - name: Strip GPU providers for CI smoke
+        shell: pwsh
+        run: |
+          Remove-Item -ErrorAction SilentlyContinue python/bin/onnxruntime_providers_cuda.dll
+          Remove-Item -ErrorAction SilentlyContinue python/bin/onnxruntime_providers_tensorrt.dll
+
       - name: Runtime smoke
         shell: pwsh
         env:
