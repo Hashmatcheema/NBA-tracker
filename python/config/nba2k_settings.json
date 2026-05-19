@@ -1,0 +1,1062 @@
+{
+    "_meta": {
+        "capture": false,
+        "name": "2k Vision",
+        "path": "./bin",
+        "version": "0.9.3"
+    },
+    "creative": {
+        "enabled": false,
+        "scripts": [
+        ]
+    },
+    "id": "876339687273422868",
+    "meter": {
+        "algo": "distance",
+        "enabled": true,
+        "rhythm": {
+            "enabled": "Stick Only",
+            "tempo": 99
+        },
+        "types": {
+            "Shot": {
+                "Arrow": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": false,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "aux": {
+                                "top": {
+                                    "high": [
+                                        80,
+                                        80,
+                                        80
+                                    ],
+                                    "low": [
+                                        60,
+                                        60,
+                                        60
+                                    ]
+                                }
+                            },
+                            "bbox": {
+                                "bottom": 15,
+                                "left": 16,
+                                "right": 16,
+                                "top": 15
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        190,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        60,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.8,
+                                "rate": 0.1
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 24,
+                                    "min": 18
+                                },
+                                "width": {
+                                    "max": 45,
+                                    "min": 37
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Purple",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 40
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 150
+                    }
+                },
+                "Arrow2": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": true,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "bbox": {
+                                "bottom": 15,
+                                "left": 16,
+                                "right": 16,
+                                "top": 15
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        0,
+                                        255
+                                    ],
+                                    "low": [
+                                        255,
+                                        0,
+                                        255
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        3,
+                                        2,
+                                        232
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        227
+                                    ]
+                                },
+                                "White": {
+                                    "high": [
+                                        255,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        240,
+                                        240,
+                                        240
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        225,
+                                        225
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.95,
+                                "rate": 0.01
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 165,
+                                    "min": 33
+                                },
+                                "width": {
+                                    "max": 30,
+                                    "min": 23
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Red",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 99
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 120
+                    }
+                },
+                "Dial": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": false,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "bbox": {
+                                "bottom": 13,
+                                "left": 15,
+                                "right": 15,
+                                "top": 13
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        190,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        60,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.7,
+                                "rate": 0.1
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 26,
+                                    "min": 13
+                                },
+                                "width": {
+                                    "max": 53,
+                                    "min": 13
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Purple",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 40
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 150
+                    }
+                },
+                "Pill": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": false,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "bbox": {
+                                "bottom": 15,
+                                "left": 16,
+                                "right": 16,
+                                "top": 15
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        190,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        60,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "White": {
+                                    "high": [
+                                        255,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        235,
+                                        235,
+                                        235
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        225,
+                                        225
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.95,
+                                "rate": 0.01
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 160,
+                                    "min": 32
+                                },
+                                "width": {
+                                    "max": 9,
+                                    "min": 6
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Purple",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 50
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 120
+                    }
+                },
+                "Straight": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": false,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "bbox": {
+                                "bottom": 15,
+                                "left": 16,
+                                "right": 16,
+                                "top": 15
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        190,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        60,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        190
+                                    ]
+                                },
+                                "White": {
+                                    "high": [
+                                        255,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        235,
+                                        235,
+                                        235
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        225,
+                                        225
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.95,
+                                "rate": 0.01
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 217,
+                                    "min": 43
+                                },
+                                "width": {
+                                    "max": 4,
+                                    "min": 2
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Purple",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 50
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 120
+                    }
+                },
+                "Sword": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": false,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Large/Side": {
+                            "bbox": {
+                                "bottom": 15,
+                                "left": 16,
+                                "right": 16,
+                                "top": 15
+                            },
+                            "color": {
+                                "Purple": {
+                                    "high": [
+                                        255,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        220,
+                                        0,
+                                        220
+                                    ]
+                                },
+                                "Red": {
+                                    "high": [
+                                        60,
+                                        60,
+                                        255
+                                    ],
+                                    "low": [
+                                        0,
+                                        0,
+                                        220
+                                    ]
+                                },
+                                "White": {
+                                    "high": [
+                                        255,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        240,
+                                        240,
+                                        240
+                                    ]
+                                },
+                                "Yellow": {
+                                    "high": [
+                                        60,
+                                        225,
+                                        225
+                                    ],
+                                    "low": [
+                                        0,
+                                        190,
+                                        190
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.95,
+                                "rate": 0.01
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 186,
+                                    "min": 37
+                                },
+                                "width": {
+                                    "max": 24,
+                                    "min": 19
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            21,
+                            22
+                        ],
+                        "val": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22,
+                                6
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65,
+                                100
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "Purple",
+                        "options": "Large/Side"
+                    },
+                    "selections": [
+                        "Size",
+                        "Location"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 50
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 120
+                    }
+                },
+                "_2kOL2": {
+                    "details": {
+                        "destination": true,
+                        "distance": true,
+                        "options": true,
+                        "speed": true,
+                        "timer": true,
+                        "timing": true
+                    },
+                    "options": {
+                        "Normal": {
+                            "bbox": {
+                                "bottom": 11,
+                                "left": 11,
+                                "right": 11,
+                                "top": 11
+                            },
+                            "color": {
+                                "White": {
+                                    "high": [
+                                        255,
+                                        255,
+                                        255
+                                    ],
+                                    "low": [
+                                        225,
+                                        225,
+                                        225
+                                    ]
+                                }
+                            },
+                            "confidence": {
+                                "initial": 1,
+                                "minimum": 0.75,
+                                "rate": 0.03
+                            },
+                            "contour": {
+                                "height": {
+                                    "max": 249,
+                                    "min": 34
+                                },
+                                "width": {
+                                    "max": 4,
+                                    "min": 2
+                                }
+                            }
+                        }
+                    },
+                    "result": {
+                        "button": [
+                            16,
+                            7
+                        ],
+                        "val": [
+                            0,
+                            100
+                        ]
+                    },
+                    "search": {
+                        "activate": {
+                            "button": [
+                                16,
+                                21,
+                                22
+                            ],
+                            "val": [
+                                100,
+                                65,
+                                65
+                            ]
+                        },
+                        "bottom": 770,
+                        "left": 5,
+                        "right": 1915,
+                        "show": true,
+                        "top": 250
+                    },
+                    "selected": {
+                        "color": "White",
+                        "options": "Normal"
+                    },
+                    "selections": [
+                        "Appearance"
+                    ],
+                    "timing": {
+                        "lock": false,
+                        "modifiers": {
+                            "button": [
+                            ],
+                            "change": [
+                            ],
+                            "val": [
+                            ]
+                        },
+                        "shortcut": {
+                            "down": 10,
+                            "enabled": true,
+                            "up": 9,
+                            "while": 7
+                        },
+                        "value": 40
+                    },
+                    "training": {
+                        "enabled": false,
+                        "threshold": 100
+                    }
+                },
+                "enabled": "Arrow2",
+                "include": [
+                    "_2kOL2",
+                    "Arrow",
+                    "Arrow2",
+                    "Dial",
+                    "Pill",
+                    "Straight",
+                    "Sword"
+                ]
+            }
+        }
+    },
+    "mode": "Online",
+    "skele": {
+        "available_models": [
+            {
+                "author": "jaj",
+                "encrypted": true,
+                "name": "Skele",
+                "requires_auth": false,
+                "size": 101160064,
+                "source_uuid": "3fde8a0e-66ec-44b0-aee5-95d1ef71f9d2",
+                "type": "eecache",
+                "uuid": "3fde8a0e-66ec-44b0-aee5-95d1ef71f9d2_832x832_fp32_trt10",
+                "version": "4",
+                "visibility": "public"
+            }
+        ],
+        "enabled": false,
+        "mode": "Default",
+        "model": {
+            "name": "Skele",
+            "uuid": "3fde8a0e-66ec-44b0-aee5-95d1ef71f9d2_832x832_fp32_trt10"
+        },
+        "release": {
+            "hand": "Left",
+            "modifiers": {
+                "zones": {
+                    "Center": 0,
+                    "Left Corner": 0,
+                    "Left Wing": 0,
+                    "Right Corner": 0,
+                    "Right Wing": 0
+                }
+            },
+            "timing": 50
+        },
+        "rhythm": {
+            "enabled": "Stick Only",
+            "tempo": 29,
+            "timing": 70
+        }
+    }
+}

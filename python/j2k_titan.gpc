@@ -1,0 +1,77 @@
+#pragma METAINFO("J2K Vision", 1, 0, "j2k")
+
+// J2K Vision | Titan Two
+// - Square never reaches the game (BUTTON_17 forced 0 last).
+// - Physical Square -> STICK_1_Y = 100 (gather) when gcv stick is neutral OR J2K inactive.
+// - When cv_flag >= 0.5 and |stick_1_y| >= 1, Python owns STICK_1_Y (hold/flick). If gcv stick is
+//   ~0 but Square is held, remap Square -> 100 (otherwise J2K idle + Square would output 0).
+
+fix32 cv_flag    = 0.0;
+fix32 stick_1_y  = 0.0;
+fix32 physical_sq = 0.0;
+fix32 physical_r2 = 0.0;
+
+main {
+    physical_sq = get_actual(BUTTON_17);
+    physical_r2 = get_actual(BUTTON_5);
+
+    if (gcv_ready()) {
+        gcv_read(0, &cv_flag);
+        gcv_read(4, &stick_1_y);
+    }
+
+    // Direction policy:
+    // - Normal / no-dip Square hold = +100
+    // - Fadeaway R2 + Square hold = -100 (opposite direction)
+    //
+    // Important: Python/GCV can send stick_1_y while cv_flag is active. The old logic passed
+    // Python's +100 through first, so fadeaway could still hold at +100. This version forces
+    // fadeaway hold to negative whenever R2 + Square is physically held.
+    if (cv_flag >= 0.5) {
+        if (physical_sq >= 50.0 && physical_r2 >= 50.0) {
+            // Fadeaway hold override: always opposite of normal/no-dip.
+            if (stick_1_y <= -1.0 || stick_1_y >= 1.0) {
+                set_val(STICK_1_Y, -abs(stick_1_y));
+            } else {
+                set_val(STICK_1_Y, -100.0);
+            }
+        } else if (stick_1_y <= -1.0 || stick_1_y >= 1.0) {
+            // Normal/no-dip: let Python own the stick while active.
+            set_val(STICK_1_Y, stick_1_y);
+        } else if (physical_sq >= 50.0) {
+            set_val(STICK_1_Y, 100.0);
+        } else {
+            set_val(STICK_1_Y, get_val(STICK_1_Y));
+        }
+    } else if (physical_sq >= 50.0) {
+        if (physical_r2 >= 50.0) {
+            set_val(STICK_1_Y, -100.0);
+        } else {
+            set_val(STICK_1_Y, 100.0);
+        }
+    } else {
+        set_val(STICK_1_Y, get_val(STICK_1_Y));
+    }
+
+    set_val(BUTTON_1,  get_val(BUTTON_1));
+    set_val(BUTTON_2,  get_val(BUTTON_2));
+    set_val(BUTTON_3,  get_val(BUTTON_3));
+    set_val(BUTTON_4,  get_val(BUTTON_4));
+    set_val(BUTTON_5,  get_val(BUTTON_5));
+    set_val(BUTTON_6,  get_val(BUTTON_6));
+    set_val(BUTTON_7,  get_val(BUTTON_7));
+    set_val(BUTTON_8,  get_val(BUTTON_8));
+    set_val(BUTTON_9,  get_val(BUTTON_9));
+    set_val(BUTTON_10, get_val(BUTTON_10));
+    set_val(BUTTON_11, get_val(BUTTON_11));
+    set_val(BUTTON_12, get_val(BUTTON_12));
+    set_val(BUTTON_13, get_val(BUTTON_13));
+    set_val(BUTTON_14, get_val(BUTTON_14));
+    set_val(BUTTON_15, get_val(BUTTON_15));
+    set_val(BUTTON_16, get_val(BUTTON_16));
+    set_val(STICK_1_X, get_val(STICK_1_X));
+    set_val(STICK_2_X, get_val(STICK_2_X));
+    set_val(STICK_2_Y, get_val(STICK_2_Y));
+
+    set_val(BUTTON_17, 0);
+}

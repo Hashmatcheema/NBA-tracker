@@ -1,0 +1,7 @@
+{
+  "module_path": "C:/path/to/module.dll",
+  "module_name": "example_module",
+  "exported_function_name": "InitializeModule",
+  "config_path": "C:/path/to/module-config.json",
+  "enable_module_loading": false
+}

@@ -1,0 +1,42 @@
+{
+  "_comment": "Example config for J2K Vision. Copy to ../j2k_config.json (the canonical runtime config) and edit.",
+  "_warning": "Do NOT commit personal values (ps5_ip, psn_user, custom calibration) back to the repo.",
+  "config_schema_version": 1,
+
+  "j2k_preset_source": "default",
+  "ps5_ip": "",
+  "psn_user": "",
+  "cont_guid": "",
+  "cap_idx": 0,
+  "cv_on": true,
+
+  "yolo_onnx": "../cpp/models/j2k_yolo.onnx",
+  "yolo_imgsz": 1280,
+  "yolo_conf": 0.25,
+  "yolo_player_conf": 0.20,
+  "yolo_ball_conf": 0.20,
+  "yolo_stamina_conf": 0.20,
+  "yolo_iou": 0.45,
+  "yolo_onnx_threads": 6,
+  "motion_threshold_tracking": 3,
+  "motion_threshold_searching": 4,
+  "motion_threshold_boosted": 2,
+  "player_ema_alpha": 0.4,
+  "ball_ema_alpha": 0.55,
+
+  "_timing_comment": "Conservative baseline timing — adjust per shot profile in-game. Default values are intentionally MID range (not aggressive) so first-run users do NOT see persistent TIMING LATE/EARLY.",
+  "active_profile": 2,
+  "profiles": {
+    "2": {
+      "nm_server_delay_ms": 28,
+      "nm_timing": 16,
+      "nm_tempo_speed": 50,
+      "flick_ms": 60.0,
+      "timing_mode": "animation",
+      "anim_motion_threshold": 18,
+      "anim_stall_frames": 3,
+      "anim_release_offset": 2,
+      "force_rescue_fire_no_apex": true
+    }
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "adaptive_format": 2,
+  "by_shot": {
+    "normal": {
+      "bar_off": 0.0,
+      "anim_off": 5,
+      "timing_locked": true,
+      "tempo_locked": true,
+      "locked_bar": 0.0,
+      "locked_anim": 5,
+      "locked_tempo": 78,
+      "streak_t_dir": null,
+      "streak_t_n": 0,
+      "streak_p_dir": null,
+      "streak_p_n": 0,
+      "hist": [
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        }
+      ],
+      "nm_tempo": 80,
+      "normal_pt_dir": null,
+      "normal_pt_n": 0,
+      "normal_pp_dir": null,
+      "normal_pp_n": 0,
+      "normal_hold_f_center": 39,
+      "travel_delay": 0,
+      "last_green_timing": {
+        "bar": 0.0,
+        "anim": 5,
+        "travel": 0
+      },
+      "last_green_tempo": 78,
+      "major_update_cooldown": 0
+    },
+    "fadeaway": {
+      "bar_off": 0.0,
+      "anim_off": 4,
+      "timing_locked": true,
+      "tempo_locked": true,
+      "locked_bar": 0.0,
+      "locked_anim": 4,
+      "locked_tempo": 78,
+      "streak_t_dir": null,
+      "streak_t_n": 0,
+      "streak_p_dir": null,
+      "streak_p_n": 0,
+      "hist": [
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        },
+        {
+          "timing": "green",
+          "tempo": "tempo_excellent",
+          "tfb": "green",
+          "pfb": "good",
+          "g": true
+        }
+      ],
+      "travel_delay": 0,
+      "last_green_timing": {
+        "bar": 0.0,
+        "anim": 4,
+        "travel": 0
+      },
+      "last_green_tempo": 78,
+      "major_update_cooldown": 0
+    },
+    "nodip": {
+      "bar_off": 0.0,
+      "anim_off": 4,
+      "timing_locked": false,
+      "tempo_locked": false,
+      "locked_bar": 0.0,
+      "locked_anim": 4,
+      "locked_tempo": 82,
+      "streak_t_dir": null,
+      "streak_t_n": 0,
+      "streak_p_dir": null,
+      "streak_p_n": 0,
+      "hist": [],
+      "nm_tempo": 78,
+      "nodip_hold_f_center": 23,
+      "travel_delay": 0,
+      "major_update_cooldown": 0
+    }
+  }
+}

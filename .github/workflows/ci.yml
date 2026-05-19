@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  windows-build-and-validate:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.10", "3.11" ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: "3.29.6"
+
+      - name: Install Python dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r python/requirements.txt
+          python -m pip install ruff pytest
+
+      - name: Lint Python
+        shell: pwsh
+        run: |
+          ruff check python
+
+      - name: Sanity
+        shell: pwsh
+        run: |
+          scripts/j2k.bat sanity
+
+      - name: Build
+        shell: pwsh
+        env:
+          J2K_NO_PAUSE: "1"
+        run: |
+          scripts/j2k.bat build
+
+      - name: Runtime smoke
+        shell: pwsh
+        run: |
+          python -c "import sys; sys.path.insert(0, 'python'); from run_cpp import GCVWorker; w=GCVWorker(640,360); w.close(); print('runtime smoke ok')"
+
+      - name: Validator KPI gate
+        shell: pwsh
+        env:
+          J2K_NO_PAUSE: "1"
+        run: |
+          # Run validate_gameplay_video against any sample clips committed under tests/fixtures/
+          # and fail the job if any clip scores below the public-release KPI floor (90/100).
+          # This catches tracking regressions before they ship.
+          $samples = @()
+          if (Test-Path "tests/fixtures") {
+            $samples = Get-ChildItem -Path "tests/fixtures" -Recurse -Include *.mp4,*.mov,*.webm
+          }
+          if ($samples.Count -eq 0) {
+            Write-Host "No fixture clips under tests/fixtures/ — skipping KPI gate. Add representative clips to enforce regressions."
+            exit 0
+          }
+          $kpi_floor = 90
+          $failed = 0
+          foreach ($f in $samples) {
+            Write-Host "[validator] $($f.FullName)"
+            python python/analyze_video.py "$($f.FullName)" --out "$env:RUNNER_TEMP"
+            $base = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
+            $score_file = Join-Path $env:RUNNER_TEMP "$($base)_score.txt"
+            if (-not (Test-Path $score_file)) {
+              Write-Host "::error::missing score file for $($f.Name)"
+              $failed++; continue
+            }
+            $score_line = Select-String -Path $score_file -Pattern '^SCORE:\s+(\d+)\s*/' | Select-Object -First 1
+            if ($score_line -and ($score_line.Matches[0].Groups[1].Value -as [int]) -lt $kpi_floor) {
+              $got = $score_line.Matches[0].Groups[1].Value
+              Write-Host "::error::$($f.Name) scored $got/100 (floor $kpi_floor)"
+              $failed++
+            }
+          }
+          if ($failed -gt 0) { exit 1 }
