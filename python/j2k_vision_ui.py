@@ -210,13 +210,10 @@ class J2KVisionWindow:
     def __init__(self, helios_embedded: bool = False) -> None:
         from PyQt6.QtCore import Qt, QTimer
         from PyQt6.QtWidgets import (
-            QCheckBox,
             QFrame,
-            QGridLayout,
             QHBoxLayout,
             QLabel,
             QMainWindow,
-            QMessageBox,
             QPushButton,
             QStackedWidget,
             QVBoxLayout,

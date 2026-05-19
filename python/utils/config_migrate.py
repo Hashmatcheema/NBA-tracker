@@ -78,7 +78,7 @@ def main() -> int:
     raw = args.config.read_text(encoding="utf-8")
     cfg = json.loads(raw)
     if not isinstance(cfg, dict):
-        print(f"[config_migrate] root is not a JSON object", file=sys.stderr)
+        print("[config_migrate] root is not a JSON object", file=sys.stderr)
         return 2
 
     cfg, applied = migrate(cfg)

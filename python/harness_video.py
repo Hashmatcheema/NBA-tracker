@@ -16,13 +16,11 @@ Env overrides (same as production):
   J2K_GCV_DLL       — explicit DLL path
   J2K_DRAW_OVERLAY  — 0 to skip drawing (timing only)
 """
-import ctypes
 import os
 import sys
 import time
 
 import cv2
-import numpy as np
 
 # ── path setup ──────────────────────────────────────────────────────────────
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +31,7 @@ if not os.environ.get("J2K_YOLO_EVERY_N"):
     os.environ["J2K_YOLO_EVERY_N"] = "1"
 
 # ── imports from run_cpp (overlay + DLL loader) ──────────────────────────────
-from run_cpp import GCVWorker, _draw_gcv_overlay  # noqa: E402
+from run_cpp import GCVWorker  # noqa: E402
 
 
 def run(input_path: str, output_path: str, every: int = 1, scale: float = 1.0) -> None:
