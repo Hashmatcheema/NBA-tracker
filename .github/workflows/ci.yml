@@ -53,8 +53,10 @@ jobs:
 
       - name: Runtime smoke
         shell: pwsh
-        run: |
-          python -c "import sys; sys.path.insert(0, 'python'); from run_cpp import GCVWorker; w=GCVWorker(640,360); w.close(); print('runtime smoke ok')"
+        env:
+          J2K_ALLOW_CPU_FALLBACK: "1"
+          J2K_ORT_NO_CUDA: "1"
+        run: python -c "import sys; sys.path.insert(0, 'python'); from run_cpp import GCVWorker; w=GCVWorker(640,360); w.close(); print('runtime smoke ok')"
 
       - name: Validator KPI gate
         shell: pwsh
