@@ -308,7 +308,11 @@ def run_once(input_path: str, out_dir: str, every: int, save_failure_frames: boo
             cw = csv.DictWriter(f, fieldnames=frame_rows[0].keys())
             cw.writeheader()
             cw.writerows(frame_rows)
+    score = 95 if pass_release else max(0, int(
+        50.0 * (1.0 - player_loss_ratio) * (1.0 - ball_loss_ratio)
+    ))
     with open(out_txt, "w", encoding="utf-8") as f:
+        f.write(f"SCORE: {score}/100\n")
         f.write(json.dumps(report, indent=2) + "\n")
 
     print(f"[analyze] annotated -> {out_video}")
