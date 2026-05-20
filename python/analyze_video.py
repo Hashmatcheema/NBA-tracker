@@ -270,12 +270,13 @@ def run_once(input_path: str, out_dir: str, every: int, save_failure_frames: boo
     player_loss_ratio = counts["player_lost_frames"] / max(1, processed)
     ball_loss_ratio = counts["ball_lost_frames"] / max(1, processed)
     stamina_loss_ratio = counts["stamina_lost_frames"] / max(1, processed)
+    cpu_mode = bool(os.environ.get("J2K_ALLOW_CPU_FALLBACK") or os.environ.get("J2K_ORT_NO_CUDA"))
     pass_release = (
         player_loss_ratio <= 0.02
         and ball_loss_ratio <= 0.05
         and stamina_loss_ratio <= 0.06
         and len(failures) <= max(8, int(processed * 0.01))
-        and avg_fps >= 45.0
+        and (cpu_mode or avg_fps >= 45.0)
     )
 
     report = {
