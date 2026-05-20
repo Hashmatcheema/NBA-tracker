@@ -330,8 +330,16 @@ def _dll_loadable(name: str) -> bool:
 
 
 def _cuda_runtime_ready_for_ort() -> tuple[bool, list[str]]:
-    # ORT 1.17 CUDA EP (CUDA 11 + cuDNN 8) can fail-fast if provider deps are only partially present.
-    required = [
+    # Try CUDA 12 names first, then fall back to CUDA 11 names (ORT 1.17 / cuDNN 8).
+    cuda12 = [
+        "cudart64_12.dll",
+        "cublas64_12.dll",
+        "cublasLt64_12.dll",
+        "cudnn64_9.dll",
+        "cudnn_ops_infer64_9.dll",
+        "cudnn_cnn_infer64_9.dll",
+    ]
+    cuda11 = [
         "cudart64_110.dll",
         "cublas64_11.dll",
         "cublasLt64_11.dll",
@@ -339,14 +347,19 @@ def _cuda_runtime_ready_for_ort() -> tuple[bool, list[str]]:
         "cudnn_ops_infer64_8.dll",
         "cudnn_cnn_infer64_8.dll",
     ]
-    missing = []
-    for dll in required:
-        if not _dll_visible_on_search_path(dll):
-            missing.append(dll)
-            continue
-        if not _dll_loadable(dll):
-            missing.append(dll)
-    return (len(missing) == 0, missing)
+    for required in (cuda12, cuda11):
+        missing = [
+            dll for dll in required
+            if not _dll_visible_on_search_path(dll) or not _dll_loadable(dll)
+        ]
+        if not missing:
+            return (True, [])
+    # Return the CUDA 11 missing list as the canonical error message.
+    missing11 = [
+        dll for dll in cuda11
+        if not _dll_visible_on_search_path(dll) or not _dll_loadable(dll)
+    ]
+    return (False, missing11)
 
 
 def _candidate_cuda_dirs() -> list[str]:
@@ -536,60 +549,77 @@ class GCVWorker:
         # #endregion
 
         _t_cuda0 = time.perf_counter()
+        _no_cuda = (os.environ.get("J2K_ORT_NO_CUDA") or "").strip() == "1"
+        _cpu_fallback = (os.environ.get("J2K_ALLOW_CPU_FALLBACK") or "").strip() == "1"
         _cuda_prov = os.path.join(_SCRIPT_DIR, "bin", "onnxruntime_providers_cuda.dll")
-        if not os.path.isfile(_cuda_prov):
-            raise RuntimeError(
-                "GPU-only mode: missing onnxruntime_providers_cuda.dll in python/bin."
-            )
         cuda_ready = False
         missing_cuda: list[str] = []
         cuda_dirs_added: list[str] = []
-        cuda_ready, missing_cuda = _cuda_runtime_ready_for_ort()
-        if not cuda_ready:
-            cuda_dirs_added = _inject_cuda_dll_dirs()
-            if cuda_dirs_added:
-                cuda_ready, missing_cuda = _cuda_runtime_ready_for_ort()
-        if cuda_ready:
-            os.environ["J2K_ORT_CUDA"] = "1"
-            # #region agent log
-            _agent_log(
-                "H57",
-                "run_cpp.py:GCVWorker.__init__",
-                "cuda_ep_enabled_preflight_ok",
-                {"providerDll": _cuda_prov},
-            )
-            # #endregion
-        else:
+        if _no_cuda:
             os.environ["J2K_ORT_CUDA"] = "0"
             # #region agent log
             _agent_log(
                 "H57",
                 "run_cpp.py:GCVWorker.__init__",
-                "cuda_ep_disabled_missing_runtime_dlls",
-                {"missing": missing_cuda},
+                "cuda_ep_skipped_no_cuda_env",
+                {},
             )
             # #endregion
-        # #region agent log
-        _dbg_log(
-            "H10",
-            "run_cpp.py:GCVWorker.__init__",
-            "cuda_preflight_result",
-            {
-                "cudaProviderDllPresent": bool(os.path.isfile(_cuda_prov)),
-                "cudaPreflightReady": bool(cuda_ready),
-                "missingCudaDeps": missing_cuda,
-                "cudaDirsAdded": cuda_dirs_added,
-                "ortCudaEnv": os.environ.get("J2K_ORT_CUDA", ""),
-                "processScaleEnv": os.environ.get("J2K_PROCESS_SCALE", ""),
-                "procScale": float(_PROCESS_SCALE),
-            },
-        )
-        # #endregion
-        if not cuda_ready:
-            miss = ", ".join(missing_cuda) if missing_cuda else "unknown CUDA/cuDNN dependency"
-            raise RuntimeError(
-                f"GPU-only mode: CUDA runtime not ready for ONNX Runtime (missing: {miss})."
-            )
+        else:
+            if not os.path.isfile(_cuda_prov):
+                if _cpu_fallback:
+                    os.environ["J2K_ORT_CUDA"] = "0"
+                else:
+                    raise RuntimeError(
+                        "GPU-only mode: missing onnxruntime_providers_cuda.dll in python/bin."
+                    )
+            else:
+                cuda_ready, missing_cuda = _cuda_runtime_ready_for_ort()
+                if not cuda_ready:
+                    cuda_dirs_added = _inject_cuda_dll_dirs()
+                    if cuda_dirs_added:
+                        cuda_ready, missing_cuda = _cuda_runtime_ready_for_ort()
+                if cuda_ready:
+                    os.environ["J2K_ORT_CUDA"] = "1"
+                    # #region agent log
+                    _agent_log(
+                        "H57",
+                        "run_cpp.py:GCVWorker.__init__",
+                        "cuda_ep_enabled_preflight_ok",
+                        {"providerDll": _cuda_prov},
+                    )
+                    # #endregion
+                else:
+                    os.environ["J2K_ORT_CUDA"] = "0"
+                    # #region agent log
+                    _agent_log(
+                        "H57",
+                        "run_cpp.py:GCVWorker.__init__",
+                        "cuda_ep_disabled_missing_runtime_dlls",
+                        {"missing": missing_cuda},
+                    )
+                    # #endregion
+                # #region agent log
+                _dbg_log(
+                    "H10",
+                    "run_cpp.py:GCVWorker.__init__",
+                    "cuda_preflight_result",
+                    {
+                        "cudaProviderDllPresent": bool(os.path.isfile(_cuda_prov)),
+                        "cudaPreflightReady": bool(cuda_ready),
+                        "missingCudaDeps": missing_cuda,
+                        "cudaDirsAdded": cuda_dirs_added,
+                        "ortCudaEnv": os.environ.get("J2K_ORT_CUDA", ""),
+                        "processScaleEnv": os.environ.get("J2K_PROCESS_SCALE", ""),
+                        "procScale": float(_PROCESS_SCALE),
+                    },
+                )
+                # #endregion
+                if not cuda_ready and not _cpu_fallback:
+                    miss = ", ".join(missing_cuda) if missing_cuda else "unknown CUDA/cuDNN dependency"
+                    raise RuntimeError(
+                        f"GPU-only mode: CUDA runtime not ready for ONNX Runtime (missing: {miss})."
+                    )
         _t_cuda1 = time.perf_counter()
 
         _dll = _resolved_dll_path()
